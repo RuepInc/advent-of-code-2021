@@ -36,7 +36,43 @@ class Day2 {
         }
     }
 
-    class Day1Test {
+    data class Position(
+        var x: Int = 0,
+        var y: Int = 0
+    ) {
+        fun forward(distance: Int) {
+            x += distance
+        }
+        fun down(distance: Int) {
+            y += distance
+        }
+        fun up(distance: Int) {
+            y -= distance
+        }
+        fun out() = x * y
+
+    }
+
+    data class AimedPosition(
+        var x: Int = 0,
+        var y: Int = 0,
+        var aim: Int = 0
+    ) {
+        fun forward(distance: Int) {
+            x += distance
+            y += aim * distance
+        }
+        fun down(distance: Int) {
+            aim += distance
+        }
+        fun up(distance: Int) {
+            aim -= distance
+        }
+        fun out() = x * y
+
+    }
+
+    class Day2Test {
         @Test
         fun testPart1() {
             val commands =
@@ -65,41 +101,4 @@ class Day2 {
             println(part2(commands))
         }
     }
-}
-
-
-data class Position(
-    var x: Int = 0,
-    var y: Int = 0
-) {
-    fun forward(distance: Int) {
-        x += distance
-    }
-    fun down(distance: Int) {
-        y += distance
-    }
-    fun up(distance: Int) {
-        y -= distance
-    }
-    fun out() = x * y
-
-}
-
-data class AimedPosition(
-    var x: Int = 0,
-    var y: Int = 0,
-    var aim: Int = 0
-) {
-    fun forward(distance: Int) {
-        x += distance
-        y += aim * distance
-    }
-    fun down(distance: Int) {
-        aim += distance
-    }
-    fun up(distance: Int) {
-        aim -= distance
-    }
-    fun out() = x * y
-
 }
